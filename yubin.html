@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>郵便番号検索</title>
+  <script>
+  //--------------------------
+// clearForm
+// フォームのクリア
+//--------------------------
+function clearForm(){
+    document.getElementById("postcode").value = "00000";
+    document.getElementById("postpre").value = "00000";
+    document.getElementById("posttown").value = "00000";
+    document.getElementById("postarea").value = "00000";
+    document.getElementById("最大表示件数_ERROR").classList.add('d-none');
+}
+
+
+  </script>
+  <style>
+                        /* 結果表示テーブル部 */
+                        .result_table {
+                                width :100%;
+                                border-collapse: collapse;
+                        }
+                        .result_table td,th {
+                                border: solid 1px #ccc;
+                        }
+                        .result_table thead {
+                                background-color: #FFA500;
+                                position: sticky;
+                                top: 0;
+                        }
+                        .result_table tfoot {
+                                color: #ffffff;
+                                background-color: #000000;
+                                position: sticky;
+                                bottom: 0;
+                        }
+
+                        .result_table tr:nth-child(4n-1) td{
+                                background-color: lightblue;
+                        }
+                        .result_table tr:nth-child(4n-2) td{
+                                background-color: lightblue;
+                        }
+
+  </style>
+</head>
+<body>
+  <h1>郵便番号・住所検索</h1>
+  <h2>検索フォーム</h2>
+  <form action="lookup.cgi" method="post">
+    <label for="postcode" style="background-color: lightgreen">郵便番号：</la>
+    <input type="text" name="postcode" id="postcode" value="00000" required>
+    <p>
+    <label for="postpre" style="background-color: lightgreen">都道府県：</lab
+    <input type="text" name="postpre" id="postpre" value="00000" required>
+    </p>
+    <label for="posttown" style="background-color: lightgreen">市区町村：</la>
+    <input type="text" name="posttown" id="posttown" value="00000" required>
+    <p>
+    <label for="postarea" style="background-color: lightgreen">以下住所：</la>
+    <input type="text" name="postarea" id="postarea" value="00000" required>
+    </p>
+    <input type="submit" value="検索">
+    <input class="btn_clear" type="button" id="FORM" name="クリア" value="ク " onclick="clearForm();">
+    <input type="button" value="出力">
+  </form>
+  <h2>※何も入力しない場合は00000と表示させ検索してください。</h2>
+
+  <div class="result_wrapper">
+                                <table class="result_table" id="結果テーブル"!-- ###検索結果### -->
+                                        <colgroup>
+                                                <col style="width:20%;">
+                                                <col style="width:20%;">
+                                                <col style="width:20%;">
+                                                <col style="width:30%;">
+                                        </colgroup>
+                                        <thead>
+                                                <tr>
+                                                        <th rowspan="2" colsp"1">郵便番号</th>
+                                                        <th rowspan="2" colsp"1">都道府県</th>
+                                                        <th rowspan="2" colsp"1">市区町村</th>
+                                                        <th rowspan="2" colsp"1">以下住所</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody id="テーブルボディ">
+                                                <tr class="d-none">
+                                                        <td colspan="14" styltext-align:center"></td>
+                                                </tr>
+                                        </tbody>
+                                        <tfoot class="d-none" style="backgroucolor:black" id="フッター">
+                                                <tr>
+                                                        <th colspan="14" aligleft">全件数:###全件数###件 表示件数:###表示件数###件</th>
+                                                </tr>
+                                        </tfoot> <!-- ###検索結果### -->
+                                </table>
+                        </div>>
+</body>
+</html>
